@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Magic 8-Ball</title>
+    <style>
+        body {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana;
+            background-color: #f7f7f7;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .magic-ball {
+            width: 200px;
+            height: 200px;
+            background-image: url('./images/279aec2a-4a0a-44cf-b259-bead3b31ef39.webp'); /* Link to your image */
+            background-size: cover;
+            background-position: center;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-size: 24px;
+            margin: 30px auto;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        .magic-ball:hover {
+            background-color: #a71616;
+        }
+        .question {
+            margin-top: 20px;
+        }
+        .response {
+            margin-top: 30px;
+            font-size: 18px;
+            font-style: italic;
+            color: #555;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            width: 60%;
+            border: 2px solid #6e6363;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #a71616;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #555;
+        }
+        #ball-text {
+            margin-top: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #a71616;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>AI-Powered Magic 8-Ball</h1>
+    <h3>Is it magic or A.I.? Who knows, ask anyways!</h3>
+
+    <div class="magic-ball" onclick="getResponse()">
+        <!-- The 8-ball is used for interaction, no text here now -->
+    </div>
+
+    <div id="ball-text">Ask a Question</div> <!-- Move the text below the 8-ball -->
+
+    <div class="question">
+        <input type="text" id="userQuestion" placeholder="Enter your question here">
+        <button onclick="getResponse()">Ask</button>
+    </div>
+
+    <div class="response" id="response"></div>
+
+    <script>
+        // Array of creative AI-like responses
+        const responses = [
+            "Absolutely...not",
+            "I foresee an answer... but not today. I don't feel like it ;)",
+            "The universe says... maybe. Try again later.",
+            "Yes, but only if you believe it.",
+            "No, not this time. Try a different path.",
+            "Give me 100 pushups then ask me again.",
+            "All signs point to yes.",
+            "This answer will cost you 5$, please venmo me first, then ask again.",
+            "The cosmos remain silent on this one.",
+            "You really want to ask A.I. that question?!",
+            "The answer is yes... and so much more.",
+            "Eh, maybe..."
+        ];
+
+        // Array for thinking texts
+        const thinkingTexts = [
+            "Performing A.I. voodoo magic...",
+            "Mmmmmmm....",
+            "USING MY A.I. BIG BRAIN!!!"
+        ];
+
+        // Function to handle the magic ball click or button click
+        function getResponse() {
+            const userQuestion = document.getElementById("userQuestion").value;
+            const responseElement = document.getElementById("response");
+            const ballText = document.getElementById("ball-text");
+
+            if (userQuestion.trim() === "") {
+                responseElement.textContent = "Please ask a question!";
+                ballText.textContent = "Ask a Question";
+            } else {
+                // Simulate thinking delay before displaying a response
+                ballText.textContent = thinkingTexts[Math.floor(Math.random() * thinkingTexts.length)];
+
+                setTimeout(() => {
+                    const randomIndex = Math.floor(Math.random() * responses.length);
+                    responseElement.textContent = responses[randomIndex];
+                    ballText.textContent = "Ask a Question";
+                }, 1000); // Delay before showing the response
+            }
+        }
+    </script>
+
+</body>
+</html>
